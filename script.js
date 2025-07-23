@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   let draggedItem = null;
   let isDragging = false;
+  let isTrimEnabled = true;
+  const trimToggle = document.getElementById('trim-toggle');
 
   // --- SELECTORS ---
   const boardContainer = document.getElementById('board-container');
@@ -207,8 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- ACTIONS ---
   async function addCategory() {
     const name = await showModal({ type: 'prompt', title: 'New Category', message: 'Enter a name for the new category:' });
-    if (name && name.trim()) {
-      data.categories.push({ name: name.trim(), cards: [] });
+    if (name && (isTrimEnabled ? name.trim() : name)) {
+      data.categories.push({ name: isTrimEnabled ? name.trim() : name, cards: [] });
       renderAndSync();
     }
   }
@@ -223,8 +225,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function addCard(catIndex) {
     const text = await showModal({ type: 'prompt', title: 'New Card', message: 'Enter the text for the new card:' });
-    if (text && text.trim()) {
-      data.categories[catIndex].cards.push(text.trim());
+    if (text && (isTrimEnabled ? text.trim() : text)) {
+      data.categories[catIndex].cards.push(isTrimEnabled ? text.trim() : text);
       renderAndSync();
     }
   }
@@ -245,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
     input.focus();
     
     const save = () => {
-      data.categories[catIndex].cards[cardIndex] = input.value.trim() || "Untitled Card";
+      data.categories[catIndex].cards[cardIndex] = isTrimEnabled ? (input.value.trim() || "Untitled Card") : (input.value || "Untitled Card");
       renderAndSync();
     };
     input.addEventListener('blur', save);
@@ -266,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
       input.focus();
 
       const save = () => {
-        data.categories[catIndex].name = input.value.trim() || "Untitled";
+        data.categories[catIndex].name = isTrimEnabled ? (input.value.trim() || "Untitled") : (input.value || "Untitled");
         renderAndSync();
       };
       input.addEventListener('blur', save);
@@ -338,6 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
   fileInput.addEventListener('change', loadFromJsonFile);
   toggleJsonBtn.addEventListener('click', toggleJsonPanel);
   closeJsonViewerBtn.addEventListener('click', toggleJsonPanel);
+  trimToggle.addEventListener('change', () => {
+    isTrimEnabled = trimToggle.checked;
+  });
 
   renderAndSync();
 });
