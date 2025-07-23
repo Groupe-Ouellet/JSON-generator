@@ -3,9 +3,30 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- STATE ---
   let data = {
     categories: [
-      { name: "To Do", cards: ["Click my title to rename this column", "Click my text to edit me", "Drag me to reorder!"] },
-      { name: "In Progress", cards: ["Implement the API"] },
-      { name: "Done", cards: ["Plan the project architecture"] }
+      {
+        "name": "Romance",
+        "cards": [
+          "A story about two lovers overcoming obstacles.",
+          "A heartwarming tale of unexpected love.",
+          "A forbidden relationship that defies society."
+        ]
+      },
+      {
+        "name": "Science Fiction",
+        "cards": [
+          "A futuristic adventure in space.",
+          "Humans exploring alien planets.",
+          "Technology gone wrong in dystopian future."
+        ]
+      },
+      {
+        "name": "Mystery",
+        "cards": [
+          "A detective solving a complex murder case.",
+          "An unsolved crime with hidden clues.",
+          "Secrets unravel in a small town."
+        ]
+      }
     ]
   };
   let draggedItem = null;

@@ -247,9 +247,7 @@ body {
 
 /* --- Drag & Drop --- */
 .card.dragging {
-  opacity: 0.5;
-  transform: rotate(3deg);
-  box-shadow: 0 5px 15px var(--shadow-color);
+  display: none;
 }
 .drop-placeholder {
   height: 50px;
