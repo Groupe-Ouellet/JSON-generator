@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kanban JSON Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 7V17M12 7V12M16 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+        <h1>Kanban JSON Builder</h1>
+      </div>
+      <div class="header-controls">
+        <button id="add-category-btn" class="btn">Add Category</button>
+        <div class="file-input-wrapper">
+          <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click();">Import JSON</button>
+          <input type="file" id="fileInput" accept=".json">
+        </div>
+        <button id="download-json-btn" class="btn btn-secondary">Download .json</button>
+        <button id="toggle-json-btn" class="btn btn-secondary">Show JSON</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="board-container" id="board-container">
+    <!-- Columns will be dynamically inserted here -->
+  </main>
+
+  <div class="json-viewer" id="json-viewer">
+    <button class="close-json-viewer" id="close-json-viewer">×</button>
+    <pre id="json-output"></pre>
+  </div>
+
+  <!-- Custom Modal -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div id="modal" class="modal">
+      <h2 id="modal-title" class="modal-title"></h2>
+      <div id="modal-body" class="modal-body"></div>
+      <div id="modal-actions" class="modal-actions"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
